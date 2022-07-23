@@ -52,13 +52,20 @@ namespace CodeGenerator
             { "ImVec2[2]", "Vector2*" },
             { "char* []", "byte**" },
             { "unsigned char[256]", "byte*"},
+            { "ImPlotGetter", "IntPtr" },
+            { "ImPlotFormatter", "IntPtr" },
+            { "ImPlotTransform", "IntPtr" },
+            { "ImNodesMiniMapNodeHoveringCallback", "IntPtr" },
+            { "ImNodesMiniMapNodeHoveringCallbackUserData", "IntPtr" },
+            { "ImNodesEditorContext*", "IntPtr" },
+            { "ImNodesContext*", "IntPtr" },
         };
-        
+
         public static readonly List<string> WellKnownEnums = new List<string>()
         {
             "ImGuiMouseButton"
         };
-        
+
         public static readonly Dictionary<string, string> WellKnownFieldReplacements = new Dictionary<string, string>()
         {
             { "bool", "bool" }, // Force bool to remain as bool in type-safe wrappers.
@@ -90,16 +97,21 @@ namespace CodeGenerator
             { "ImVec4(0,0,0,-1)", "new Vector4(0, 0, 0, -1)" },
             { "ImPlotPoint(0,0)", "new ImPlotPoint { x = 0, y = 0 }" },
             { "ImPlotPoint(1,1)", "new ImPlotPoint { x = 1, y = 1 }" },
+            { "ImPlotRange()", "new ImPlotRange()" },
+            { "ImPlotRect()", "new ImPlotRect()" },
             { "ImDrawCornerFlags_All", "ImDrawCornerFlags.All" },
             { "ImPlotFlags_None", "ImPlotFlags.None"},
             { "ImPlotAxisFlags_None", "ImPlotAxisFlags.None"},
             { "ImPlotAxisFlags_NoGridLines", "ImPlotAxisFlags.NoGridLines"},
             { "ImGuiCond_Once", "ImGuiCond.Once"},
             { "ImPlotOrientation_Vertical", "ImPlotOrientation.Vertical"},
-            { "PinShape_CircleFilled", "PinShape.CircleFilled"},
+            { "ImNodesPinShape_CircleFilled", "ImNodesPinShape.CircleFilled"},
+            { "ImNodesMiniMapLocation_TopLeft", "ImNodesMiniMapLocation.TopLeft"},
             { "ImGuiPopupFlags_None", "ImGuiPopupFlags.None"},
             { "ImGuiNavHighlightFlags_TypeDefault", "ImGuiNavHighlightFlags.TypeDefault"},
             { "ImGuiKeyModFlags_Ctrl", "ImGuiKeyModFlags.Ctrl"},
+            { "ImPlotBin_Sturges", "ImPlotBin.Sturges"},
+            { "ImPlotCond_Once", "ImPlotCond.Once"},
             { "ImPlotYAxis_1", "ImPlotYAxis._1"},
             { "FLT_MAX", "float.MaxValue" },
             { "(((ImU32)(255)<<24)|((ImU32)(255)<<16)|((ImU32)(255)<<8)|((ImU32)(255)<<0))", "0xFFFFFFFF" },

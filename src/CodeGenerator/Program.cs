@@ -617,7 +617,9 @@ namespace CodeGenerator
                     marshalledParameters[i] = new MarshalledParameter(wrappedParamType, false, nativeArgName, false);
                     preCallLines.Add($"{tr.Type} {nativeArgName} = {correctedIdentifier}.NativePtr;");
                 }
-                else if ((tr.Type.EndsWith("*") || tr.Type.Contains("[") || tr.Type.EndsWith("&")) && tr.Type != "void*" && tr.Type != "ImGuiContext*" && tr.Type != "ImPlotContext*"&& tr.Type != "EditorContext*")
+                else if ((tr.Type.EndsWith("*") || tr.Type.Contains("[") || tr.Type.EndsWith("&")) && tr.Type != "void*" 
+                       && tr.Type != "ImGuiContext*" && tr.Type != "ImPlotContext*" 
+                       && tr.Type != "ImNodesEditorContext*" && tr.Type != "ImNodesContext*")
                 {
                     string nonPtrType;
                     if (tr.Type.Contains("["))
@@ -795,8 +797,11 @@ namespace CodeGenerator
         }
 
         private static bool CorrectDefaultValue(string defaultVal, TypeReference tr, out string correctedDefault)
-        {
-            if (tr.Type == "ImGuiContext*" || tr.Type == "ImPlotContext*" || tr.Type == "EditorContext*")
+        { 
+            if (tr.Type == "ImGuiContext*" || tr.Type == "ImPlotContext*"
+             || tr.Type == "ImNodesEditorContext*" || tr.Type == "ImNodesContext*"
+             || tr.Type == "ImNodesMiniMapNodeHoveringCallback"
+             || tr.Type == "ImNodesMiniMapNodeHoveringCallbackUserData")
             {
                 correctedDefault = "IntPtr.Zero";
                 return true;

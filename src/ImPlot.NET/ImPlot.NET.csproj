@@ -16,6 +16,11 @@
     <RootNamespace>ImPlotNET</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="build\**" />
+    <EmbeddedResource Remove="build\**" />
+    <None Remove="build\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="System.Numerics.Vectors" Version="4.4.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.4.0" />
     <PackageReference Include="System.Buffers" Version="4.4.0" />
@@ -24,9 +29,13 @@
     <ProjectReference Include="..\ImGui.NET\ImGui.NET.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="build\net40" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="build\net40\ImPlot.NET.targets" />
+    <Content Include="..\..\deps\win-x86\cimplot.dll">
+      <PackagePath>runtimes/win-x86/native</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="..\..\deps\win-x64\cimplot.dll">
+      <PackagePath>runtimes/win-x64/native</PackagePath>
+      <Pack>true</Pack>
+    </Content>
   </ItemGroup>
 </Project>
